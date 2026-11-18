@@ -16,9 +16,10 @@
       <h3>Your tacos in this order:</h3>
       <a th:href="@{/design}" id="another">Design another taco</a><br/>
       <ul>
-        <li th:each="taco : ${tacoOrder.tacos}"><span th:text="${taco.name}">taco name</span></li>
+        <li th:each="taco : ${tacoOrder.tacos}">
+          <span th:text="${taco.name}">taco name</span></li>
       </ul>
-      
+
       <div th:if="${#fields.hasErrors()}">
         <span class="validationError">
         Please correct the problems below and resubmit.
@@ -33,6 +34,12 @@
             th:errors="*{deliveryName}">Name Error</span>
       <br/>
 
+      <label for="deliveryNickname">Nickname: </label>
+      <input type="text" th:field="*{deliveryNickname}"/>
+      <span class="validationError"
+            th:if="${#fields.hasErrors('deliveryNickname')}"
+            th:errors="*{deliveryNickname}">Nikename Error</span>
+      <br/>
       <label for="deliveryStreet">Street address: </label>
       <input type="text" th:field="*{deliveryStreet}"/>
       <span class="validationError"
@@ -85,6 +92,6 @@
 
       <input type="submit" value="Submit Order"/>
     </form>
-
+    
   </body>
 </html>
